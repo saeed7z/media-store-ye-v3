@@ -68,12 +68,6 @@ function setupPaymentMethods() {
         createPaymentMethods(paymentContainer);
     }
     
-    // Add payment methods to order form if exists
-    const orderForm = document.getElementById('orderForm');
-    if (orderForm && !document.getElementById('paymentSection')) {
-        addPaymentSectionToOrder();
-    }
-    
     // Add to cart checkout if exists
     const checkoutSection = document.querySelector('.cart-actions');
     if (checkoutSection && !document.getElementById('cartPaymentMethods')) {
