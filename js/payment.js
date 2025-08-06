@@ -349,17 +349,29 @@ function showPaymentForm(paymentMethod) {
     const formsContainer = document.getElementById('paymentFormsContainer');
     if (!formsContainer) return;
 
+    // Show container
+    formsContainer.style.display = 'block';
+
     // Hide all forms
     const allForms = formsContainer.querySelectorAll('.payment-form');
     allForms.forEach(form => form.style.display = 'none');
 
-    // Show container
-    formsContainer.style.display = 'block';
-
     // Show selected form
     if (paymentMethod === 'creditCard') {
+        let creditCardForm = document.getElementById('creditCardForm');
+        if (!creditCardForm) {
+            // Re-create the forms if they were removed
+            formsContainer.innerHTML = createCreditCardForm() + createBankDepositForm();
+            setupPaymentEventListeners();
+        }
         document.getElementById('creditCardForm').style.display = 'block';
     } else if (paymentMethod === 'bankDeposit') {
+        let bankDepositForm = document.getElementById('bankDepositForm');
+        if (!bankDepositForm) {
+            // Re-create the forms if they were removed
+            formsContainer.innerHTML = createCreditCardForm() + createBankDepositForm();
+            setupPaymentEventListeners();
+        }
         document.getElementById('bankDepositForm').style.display = 'block';
     } else if (paymentMethod === 'paypal') {
         showPayPalInfo();
@@ -371,25 +383,40 @@ function showPayPalInfo() {
     const formsContainer = document.getElementById('paymentFormsContainer');
     if (!formsContainer) return;
 
-    formsContainer.innerHTML = `
-        <div class="card border-info">
-            <div class="card-header bg-info text-white">
-                <h6 class="mb-0">
-                    <i class="fab fa-paypal me-2"></i>
-                    الدفع عبر PayPal
-                </h6>
-            </div>
-            <div class="card-body text-center">
-                <i class="fab fa-paypal fa-4x text-primary mb-3"></i>
-                <h5>ستتم إعادة توجيهكم إلى PayPal</h5>
-                <p class="text-muted">بعد تأكيد الطلب، ستتم إعادة توجيهكم إلى موقع PayPal لإكمال عملية الدفع الآمن.</p>
-                <div class="alert alert-success">
-                    <i class="fas fa-shield-alt me-2"></i>
-                    دفع آمن ومضمون 100%
+    // Hide all existing forms first
+    const allForms = formsContainer.querySelectorAll('.payment-form');
+    allForms.forEach(form => form.style.display = 'none');
+
+    // Check if PayPal info already exists
+    let paypalInfo = document.getElementById('paypalInfo');
+    if (!paypalInfo) {
+        paypalInfo = document.createElement('div');
+        paypalInfo.id = 'paypalInfo';
+        paypalInfo.className = 'payment-form';
+        paypalInfo.innerHTML = `
+            <div class="card border-info">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0">
+                        <i class="fab fa-paypal me-2"></i>
+                        الدفع عبر PayPal
+                    </h6>
+                </div>
+                <div class="card-body text-center">
+                    <i class="fab fa-paypal fa-4x text-primary mb-3"></i>
+                    <h5>ستتم إعادة توجيهكم إلى PayPal</h5>
+                    <p class="text-muted">بعد تأكيد الطلب، ستتم إعادة توجيهكم إلى موقع PayPal لإكمال عملية الدفع الآمن.</p>
+                    <div class="alert alert-success">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        دفع آمن ومضمون 100%
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
+        formsContainer.appendChild(paypalInfo);
+    }
+
+    // Show PayPal info
+    paypalInfo.style.display = 'block';
 }
 
 // Show bank details
