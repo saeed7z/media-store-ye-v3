@@ -248,8 +248,9 @@ function setupOrderFormDynamics() {
         services.forEach(service => {
             const option = document.createElement('option');
             option.value = service.id;
-            option.textContent = `${service.name} - ${service.price} ر.س`;
-            option.dataset.price = service.price;
+            option.textContent = `${service.name} - ${window.formatPrice ? window.formatPrice(service.basePriceUSD || service.price) : service.price + ' ر.س'}`;
+            option.dataset.price = service.basePriceUSD || service.price;
+            option.dataset.basePriceUsd = service.basePriceUSD || service.price;
             serviceSelect.appendChild(option);
         });
     }

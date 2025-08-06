@@ -38,6 +38,8 @@ The application follows a multi-page structure with the following key pages:
   - `js/main.js`: Core application initialization and utilities
   - `js/services.js`: Service data management and display logic
   - `js/cart.js`: Shopping cart and order management
+  - `js/currency.js`: Multi-currency conversion and price formatting (YER, SAR, USD)
+  - `js/payment.js`: Payment method selection and form handling
 
 ### Data Structure
 - **Services Data**: Hard-coded service catalog with structured data including pricing, delivery times, and features
@@ -64,3 +66,31 @@ The application follows a multi-page structure with the following key pages:
 - **DOM APIs**: Standard browser APIs for dynamic content manipulation and form handling
 
 Note: This is a frontend-only application with no backend infrastructure. All data is managed client-side using localStorage, and the service catalog uses static data structures defined in JavaScript files.
+
+## Recent Enhancements (January 2025)
+
+### Legal Pages & Compliance
+- Added comprehensive Terms of Use page (`pages/terms.html`) in Arabic
+- Added Privacy Policy page (`pages/privacy.html`) in Arabic  
+- Updated all page footers with proper copyright notice
+- Linked legal pages in navigation and footer menus
+
+### Multi-Currency System
+- Implemented dynamic currency conversion between Yemeni Rial (YER), Saudi Riyal (SAR), and US Dollar (USD)
+- Added currency selector to order form and services display
+- Real-time price conversion using base rates: YER (250:1), SAR (3.75:1), USD (1:1)
+- Created `js/currency.js` module for currency management
+
+### Enhanced Payment Methods
+- Integrated multiple payment options in order flow:
+  - Credit/debit card forms with validation (Visa, MasterCard)
+  - PayPal integration setup for future backend connection
+  - Local Yemeni bank transfer options (Al-Qutibi, Al-Kuraimi, Al-Omqi, Al-Shabakat)
+- Added payment receipt upload functionality with image preview
+- Created `js/payment.js` module for payment form management
+
+### User Experience Improvements
+- Enhanced order form layout with 3-column design (currency, quantity, total price)
+- Added currency symbols and proper RTL text alignment
+- Improved form validation and user feedback messages
+- Better visual organization of payment methods with collapsible sections
