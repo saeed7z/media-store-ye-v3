@@ -27,6 +27,189 @@ function loadCart() {
 // Save cart to localStorage
 function saveCart() {
     localStorage.setItem('smmCart', JSON.stringify(cart));
+    updateCartDisplay();
+}
+
+// Update cart display in header
+function updateCartDisplay() {
+    const cartCount = document.getElementById('cartCount');
+    const cartCountUser = document.getElementById('cartCountUser');
+    
+    if (cart.items.length > 0) {
+        const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+        
+        if (cartCount) {
+            cartCount.textContent = totalItems;
+            cartCount.style.display = 'block';
+            cartCount.classList.add('cart-badge');
+        }
+        
+        if (cartCountUser) {
+            cartCountUser.textContent = totalItems;
+            cartCountUser.style.display = 'block';
+            cartCountUser.classList.add('cart-badge');
+        }
+    } else {
+        if (cartCount) {
+            cartCount.style.display = 'none';
+        }
+        if (cartCountUser) {
+            cartCountUser.style.display = 'none';
+        }
+    }
+}
+
+// Show cart modal
+function showCart() {
+    const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+    updateCartModal();
+    cartModal.show();
+}
+
+// Update cart modal content
+function updateCartModal() {
+    const cartItems = document.getElementById('cartItems');
+    const cartSummary = document.getElementById('cartSummary');
+    const cartFooter = document.getElementById('cartFooter');
+    const emptyCart = document.getElementById('emptyCart');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    if (cart.items.length === 0) {
+        emptyCart.style.display = 'block';
+        cartSummary.style.display = 'none';
+        cartFooter.style.display = 'none';
+    } else {
+        emptyCart.style.display = 'none';
+        cartSummary.style.display = 'block';
+        cartFooter.style.display = 'flex';
+        
+        // Build cart items HTML
+        let cartHTML = '';
+        let total = 0;
+        
+        cart.items.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            cartHTML += `
+                <div class="cart-item d-flex align-items-center">
+                    <div class="cart-item-details ms-3">
+                        <h6 class="mb-1">${item.name}</h6>
+                        <small class="text-muted">${item.platform} - ${item.description}</small>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-sm btn-outline-secondary me-2" onclick="updateCartItemQuantity(${index}, ${item.quantity - 1})">-</button>
+                        <input type="number" class="form-control cart-item-quantity me-2" value="${item.quantity}" min="1" onchange="updateCartItemQuantity(${index}, this.value)">
+                        <button class="btn btn-sm btn-outline-secondary me-3" onclick="updateCartItemQuantity(${index}, ${item.quantity + 1})">+</button>
+                        <span class="cart-item-price me-3">${formatPrice(itemTotal)}</span>
+                        <button class="btn btn-sm btn-outline-danger" onclick="removeCartItem(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        cartItems.innerHTML = cartHTML;
+        cartTotal.textContent = formatPrice(total);
+        cart.total = total;
+    }
+}
+
+// Add item to cart
+function addToCart(item) {
+    const existingItemIndex = cart.items.findIndex(cartItem => 
+        cartItem.platform === item.platform && 
+        cartItem.serviceType === item.serviceType &&
+        cartItem.name === item.name
+    );
+    
+    if (existingItemIndex > -1) {
+        cart.items[existingItemIndex].quantity += item.quantity;
+    } else {
+        cart.items.push(item);
+    }
+    
+    saveCart();
+    
+    // Show success message
+    showToast('تم إضافة الخدمة إلى سلة المشتريات', 'success');
+}
+
+// Update cart item quantity
+function updateCartItemQuantity(index, newQuantity) {
+    if (newQuantity <= 0) {
+        removeCartItem(index);
+    } else {
+        cart.items[index].quantity = parseInt(newQuantity);
+        saveCart();
+        updateCartModal();
+    }
+}
+
+// Remove item from cart
+function removeCartItem(index) {
+    cart.items.splice(index, 1);
+    saveCart();
+    updateCartModal();
+    showToast('تم حذف الخدمة من سلة المشتريات', 'info');
+}
+
+// Clear entire cart
+function clearCart() {
+    cart.items = [];
+    cart.total = 0;
+    saveCart();
+    updateCartModal();
+    showToast('تم إفراغ سلة المشتريات', 'info');
+}
+
+// Format price with currency
+function formatPrice(price) {
+    const currency = localStorage.getItem('selectedCurrency') || 'YER';
+    const symbols = {
+        'YER': 'ر.ي',
+        'SAR': 'ر.س',
+        'USD': '$'
+    };
+    
+    return `${price.toLocaleString()} ${symbols[currency]}`;
+}
+
+// Show toast notification
+function showToast(message, type = 'info') {
+    // Create toast if it doesn't exist
+    let toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toastContainer';
+        toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
+        toastContainer.style.zIndex = '9999';
+        document.body.appendChild(toastContainer);
+    }
+    
+    const toastId = 'toast_' + Date.now();
+    const toastHTML = `
+        <div id="${toastId}" class="toast align-items-center text-bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ${message}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    `;
+    
+    toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+    
+    const toastElement = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
+    
+    // Remove toast element after it's hidden
+    toastElement.addEventListener('hidden.bs.toast', function() {
+        toastElement.remove();
+    });
 }
 
 // Load selected service from services page
@@ -68,6 +251,32 @@ function loadSelectedService() {
 
 // Setup cart event listeners
 function setupCartEventListeners() {
+    // Cart toggle buttons
+    const cartToggle = document.getElementById('cartToggle');
+    const cartToggleUser = document.getElementById('cartToggleUser');
+    
+    if (cartToggle) {
+        cartToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            showCart();
+        });
+    }
+    
+    if (cartToggleUser) {
+        cartToggleUser.addEventListener('click', function(e) {
+            e.preventDefault();
+            showCart();
+        });
+    }
+    
+    // Clear cart button
+    const clearCartBtn = document.getElementById('clearCart');
+    if (clearCartBtn) {
+        clearCartBtn.addEventListener('click', function() {
+            clearCart();
+        });
+    }
+    
     // Add event listeners for cart-related buttons
     document.addEventListener('click', function(e) {
         if (e.target.matches('.add-to-cart')) {
