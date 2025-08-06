@@ -6,7 +6,7 @@ This is a comprehensive Arabic SMM (Social Media Marketing) panel website that s
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+Preferred communication style: Simple, everyday language in Arabic.
 
 ## System Architecture
 
