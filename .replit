@@ -1,4 +1,4 @@
-modules = ["web", "nodejs-20"]
+modules = ["web", "nodejs-20", "python-3.11"]
 run = "node index.js"
 
 [nix]
@@ -31,3 +31,6 @@ externalPort = 80
 
 [deployment]
 run = ["sh", "-c", "node index.js"]
+
+[agent]
+expertMode = true
