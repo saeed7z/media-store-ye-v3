@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - SMM Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/rtl.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-chart-line me-2"></i>
+                SMM Panel
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">الخدمات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">تقديم طلب</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="track.html">تتبع الطلب</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">تواصل معنا</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="userDropdown">
+                            <i class="fas fa-user-circle me-2"></i>
+                            <span id="userName">المستخدم</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item active" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>لوحة التحكم</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header bg-gradient-primary text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="h3 fw-bold mb-2">مرحباً، <span id="dashboardUserName">المستخدم</span></h1>
+                    <p class="mb-0">إدارة طلباتك وتتبع الخدمات من هنا</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="order.html" class="btn btn-light">
+                        <i class="fas fa-plus me-2"></i>طلب جديد
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card bg-primary text-white">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-cart fa-2x"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4 class="mb-0" id="totalOrders">0</h4>
+                                <small>إجمالي الطلبات</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card bg-success text-white">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle fa-2x"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4 class="mb-0" id="completedOrders">0</h4>
+                                <small>طلبات مكتملة</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card bg-warning text-white">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock fa-2x"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4 class="mb-0" id="pendingOrders">0</h4>
+                                <small>طلبات قيد التنفيذ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card bg-info text-white">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign fa-2x"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4 class="mb-0" id="totalSpent">0 ر.س</h4>
+                                <small>إجمالي المبلغ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Recent Orders -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-list me-2"></i>الطلبات الأخيرة
+                            </h5>
+                            <a href="track.html" class="btn btn-outline-primary btn-sm">عرض الكل</a>
+                        </div>
+                        <div class="card-body">
+                            <div id="recentOrders">
+                                <div class="text-center py-5">
+                                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                    <h6 class="text-muted">لا توجد طلبات حتى الآن</h6>
+                                    <p class="text-muted small">ابدأ بطلب خدمتك الأولى</p>
+                                    <a href="order.html" class="btn btn-primary">طلب جديد</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Activity -->
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-history me-2"></i>النشاط الأخير
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="activityLog">
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-primary">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>تم إنشاء الحساب</h6>
+                                        <small class="text-muted" id="joinDate">اليوم</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <!-- User Profile -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-user me-2"></i>معلومات الحساب
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-circle fa-4x text-primary"></i>
+                                </div>
+                                <h6 class="mt-2 mb-1" id="profileName">المستخدم</h6>
+                                <small class="text-muted" id="profileEmail">user@example.com</small>
+                            </div>
+                            <div class="user-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">تاريخ الانضمام:</span>
+                                    <span id="memberSince">اليوم</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">نوع العضوية:</span>
+                                    <span class="badge bg-primary">عضو جديد</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-grid">
+                                <button class="btn btn-outline-primary btn-sm" onclick="editProfile()">
+                                    <i class="fas fa-edit me-2"></i>تعديل البيانات
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-bolt me-2"></i>إجراءات سريعة
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <a href="order.html" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-plus me-2"></i>طلب جديد
+                                </a>
+                                <a href="track.html" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-search me-2"></i>تتبع طلب
+                                </a>
+                                <a href="services.html" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-list me-2"></i>تصفح الخدمات
+                                </a>
+                                <a href="contact.html" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-headset me-2"></i>الدعم الفني
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-bell me-2"></i>الإشعارات
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="fas fa-gift me-2"></i>
+                                <strong>مكافأة الترحيب!</strong><br>
+                                <small>احصل على خصم 20% على أول طلب - كود: WELCOME20</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">SMM Panel</h5>
+                    <p class="text-muted small">أفضل منصة للتسويق الإلكتروني وخدمات وسائل التواصل الاجتماعي في المنطقة العربية</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-telegram fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">روابط سريعة</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-muted text-decoration-none">من نحن</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">الخدمات</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">تواصل معنا</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">سياسة الاستخدام</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">الخدمات</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html#instagram" class="text-muted text-decoration-none">انستقرام</a></li>
+                        <li><a href="services.html#tiktok" class="text-muted text-decoration-none">تيك توك</a></li>
+                        <li><a href="services.html#youtube" class="text-muted text-decoration-none">يوتيوب</a></li>
+                        <li><a href="services.html#twitter" class="text-muted text-decoration-none">تويتر</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">تواصل معنا</h6>
+                    <p class="text-muted small mb-2"><i class="fas fa-envelope me-2"></i>support@smmPanel.com</p>
+                    <p class="text-muted small mb-2"><i class="fab fa-whatsapp me-2"></i>+966 50 123 4567</p>
+                    <p class="text-muted small"><i class="fab fa-telegram me-2"></i>@smmPanel_support</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted small mb-0">جميع الحقوق محفوظة © 2025 SMM Panel</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    
+    <script>
+        // Load dashboard data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+        });
+
+        function loadDashboardData() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const orders = JSON.parse(localStorage.getItem('userOrders') || '[]');
+            
+            // Update user info
+            document.getElementById('userName').textContent = user.name || 'المستخدم';
+            document.getElementById('dashboardUserName').textContent = user.name || 'المستخدم';
+            document.getElementById('profileName').textContent = user.name || 'المستخدم';
+            document.getElementById('profileEmail').textContent = user.email || 'user@example.com';
+            
+            // Update join date
+            if (user.registrationDate || user.loginTime) {
+                const joinDate = new Date(user.registrationDate || user.loginTime);
+                document.getElementById('joinDate').textContent = joinDate.toLocaleDateString('ar-SA');
+                document.getElementById('memberSince').textContent = joinDate.toLocaleDateString('ar-SA');
+            }
+            
+            // Update statistics
+            const completed = orders.filter(order => order.status === 'completed').length;
+            const pending = orders.filter(order => order.status === 'processing' || order.status === 'pending').length;
+            const totalSpent = orders.reduce((sum, order) => sum + (parseFloat(order.total) || 0), 0);
+            
+            document.getElementById('totalOrders').textContent = orders.length;
+            document.getElementById('completedOrders').textContent = completed;
+            document.getElementById('pendingOrders').textContent = pending;
+            document.getElementById('totalSpent').textContent = totalSpent.toFixed(2) + ' ر.س';
+            
+            // Load recent orders
+            loadRecentOrders(orders);
+        }
+
+        function loadRecentOrders(orders) {
+            const recentOrdersContainer = document.getElementById('recentOrders');
+            
+            if (orders.length === 0) {
+                return; // Keep empty state
+            }
+            
+            const recentOrders = orders.slice(-5).reverse(); // Last 5 orders
+            
+            let ordersHTML = '';
+            recentOrders.forEach(order => {
+                const statusClass = getStatusClass(order.status);
+                const statusText = getStatusText(order.status);
+                
+                ordersHTML += `
+                    <div class="order-item border rounded p-3 mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">${order.service}</h6>
+                                <p class="text-muted small mb-2">${order.platform} - ${order.quantity} وحدة</p>
+                                <span class="badge ${statusClass}">${statusText}</span>
+                            </div>
+                            <div class="text-end">
+                                <p class="mb-1 fw-bold">${order.total} ر.س</p>
+                                <small class="text-muted">${new Date(order.date).toLocaleDateString('ar-SA')}</small>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <a href="track.html?order=${order.id}" class="btn btn-outline-primary btn-sm">تتبع الطلب</a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            recentOrdersContainer.innerHTML = ordersHTML;
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'completed': return 'bg-success';
+                case 'processing': return 'bg-warning';
+                case 'pending': return 'bg-info';
+                default: return 'bg-secondary';
+            }
+        }
+
+        function getStatusText(status) {
+            switch(status) {
+                case 'completed': return 'مكتمل';
+                case 'processing': return 'جاري التنفيذ';
+                case 'pending': return 'في الانتظار';
+                default: return 'غير محدد';
+            }
+        }
+
+        function editProfile() {
+            alert('سيتم توفير هذه الميزة قريباً');
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('user');
+                window.location.href = '../index.html';
+            }
+        }
+    </script>
+</body>
+</html>

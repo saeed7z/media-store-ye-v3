@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع الطلب - SMM Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/rtl.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-chart-line me-2"></i>
+                SMM Panel
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">الخدمات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.html">تقديم طلب</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="track.html">تتبع الطلب</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">تواصل معنا</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">تسجيل الدخول</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white px-3" href="register.html">إنشاء حساب</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header bg-gradient-primary text-white py-4">
+        <div class="container">
+            <h1 class="h2 fw-bold mb-2">تتبع الطلب</h1>
+            <p class="mb-0">تابع حالة طلبك من خلال رقم الطلب</p>
+        </div>
+    </section>
+
+    <!-- Track Order Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-search me-2"></i>
+                                البحث عن الطلب
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="trackForm">
+                                <div class="mb-3">
+                                    <label for="orderId" class="form-label">رقم الطلب</label>
+                                    <input type="text" class="form-control" id="orderId" placeholder="مثال: ORD123456789" required>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        ستجد رقم الطلب في البريد الإلكتروني المرسل إليك
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search me-2"></i>
+                                        تتبع الطلب
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Status Display -->
+            <div class="row justify-content-center mt-4" id="orderStatus" style="display: none;">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-box me-2"></i>
+                                تفاصيل الطلب
+                            </h5>
+                            <span class="badge bg-primary" id="orderStatusBadge">جاري التنفيذ</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">رقم الطلب</h6>
+                                    <p class="fw-bold" id="displayOrderId">-</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">تاريخ الطلب</h6>
+                                    <p id="orderDate">-</p>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <h6 class="text-muted">المنصة</h6>
+                                    <p id="orderPlatform">-</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-muted">الخدمة</h6>
+                                    <p id="orderService">-</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-muted">الكمية</h6>
+                                    <p id="orderQuantity">-</p>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">السعر الإجمالي</h6>
+                                    <p class="fw-bold text-primary" id="orderTotal">-</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">الرابط</h6>
+                                    <p class="text-break" id="orderLink">-</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Progress Timeline -->
+                            <div class="mb-4">
+                                <h6 class="text-muted mb-3">تتبع حالة الطلب</h6>
+                                <div class="progress-timeline">
+                                    <div class="timeline-item active" data-status="pending">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h6>تم استلام الطلب</h6>
+                                            <small class="text-muted">في انتظار المراجعة</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item" data-status="processing">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-cog"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h6>جاري التنفيذ</h6>
+                                            <small class="text-muted">بدء تطبيق الخدمة</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item" data-status="completed">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h6>مكتمل</h6>
+                                            <small class="text-muted">تم تسليم الطلب بنجاح</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>ملاحظة:</strong> قد تستغرق بعض الخدمات وقتاً أطول حسب الكمية المطلوبة. سيتم تحديث الحالة تلقائياً.
+                            </div>
+                            
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary btn-sm" onclick="refreshOrderStatus()">
+                                    <i class="fas fa-sync-alt me-2"></i>تحديث الحالة
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="contactSupport()">
+                                    <i class="fas fa-headset me-2"></i>تواصل مع الدعم
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">SMM Panel</h5>
+                    <p class="text-muted small">أفضل منصة للتسويق الإلكتروني وخدمات وسائل التواصل الاجتماعي في المنطقة العربية</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-telegram fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">روابط سريعة</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-muted text-decoration-none">من نحن</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">الخدمات</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">تواصل معنا</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">سياسة الاستخدام</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">الخدمات</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html#instagram" class="text-muted text-decoration-none">انستقرام</a></li>
+                        <li><a href="services.html#tiktok" class="text-muted text-decoration-none">تيك توك</a></li>
+                        <li><a href="services.html#youtube" class="text-muted text-decoration-none">يوتيوب</a></li>
+                        <li><a href="services.html#twitter" class="text-muted text-decoration-none">تويتر</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">تواصل معنا</h6>
+                    <p class="text-muted small mb-2"><i class="fas fa-envelope me-2"></i>support@smmPanel.com</p>
+                    <p class="text-muted small mb-2"><i class="fab fa-whatsapp me-2"></i>+966 50 123 4567</p>
+                    <p class="text-muted small"><i class="fab fa-telegram me-2"></i>@smmPanel_support</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted small mb-0">جميع الحقوق محفوظة © 2025 SMM Panel</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

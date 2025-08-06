@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - SMM Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/rtl.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-chart-line me-2"></i>
+                SMM Panel
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="../index.html">العودة للرئيسية</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-user-plus fa-4x text-primary mb-3"></i>
+                                <h2 class="fw-bold mb-2">إنشاء حساب جديد</h2>
+                                <p class="text-muted">انضم إلينا واحصل على أفضل خدمات التسويق الإلكتروني</p>
+                            </div>
+                            
+                            <form id="registerForm" class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">الاسم الأول *</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                        <div class="invalid-feedback">يرجى إدخال الاسم الأول</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">الاسم الأخير *</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                        <div class="invalid-feedback">يرجى إدخال الاسم الأخير</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">البريد الإلكتروني *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+                                        <div class="invalid-feedback">يرجى إدخال بريد إلكتروني صحيح</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">رقم الهاتف *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-phone"></i>
+                                        </span>
+                                        <input type="tel" class="form-control" id="phone" placeholder="+966 5X XXX XXXX" required>
+                                        <div class="invalid-feedback">يرجى إدخال رقم هاتف صحيح</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="password" class="form-label">كلمة المرور *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                            <input type="password" class="form-control" id="password" placeholder="••••••••" required minlength="6">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">
+                                                <i class="fas fa-eye" id="toggleIcon1"></i>
+                                            </button>
+                                            <div class="invalid-feedback">كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="confirmPassword" class="form-label">تأكيد كلمة المرور *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                            <input type="password" class="form-control" id="confirmPassword" placeholder="••••••••" required>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirmPassword')">
+                                                <i class="fas fa-eye" id="toggleIcon2"></i>
+                                            </button>
+                                            <div class="invalid-feedback">كلمات المرور غير متطابقة</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="country" class="form-label">الدولة</label>
+                                    <select class="form-select" id="country">
+                                        <option value="">اختر الدولة</option>
+                                        <option value="SA">السعودية</option>
+                                        <option value="AE">الإمارات</option>
+                                        <option value="KW">الكويت</option>
+                                        <option value="QA">قطر</option>
+                                        <option value="BH">البحرين</option>
+                                        <option value="OM">عمان</option>
+                                        <option value="JO">الأردن</option>
+                                        <option value="LB">لبنان</option>
+                                        <option value="EG">مصر</option>
+                                        <option value="MA">المغرب</option>
+                                        <option value="other">أخرى</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                        <label class="form-check-label" for="agreeTerms">
+                                            أوافق على <a href="#" class="text-primary">شروط الاستخدام</a> و <a href="#" class="text-primary">سياسة الخصوصية</a> *
+                                        </label>
+                                        <div class="invalid-feedback">يجب الموافقة على الشروط والأحكام</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            أرغب في تلقي العروض والأخبار عبر البريد الإلكتروني
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid mb-3">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-user-plus me-2"></i>
+                                        إنشاء الحساب
+                                    </button>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <p class="mb-0">لديك حساب بالفعل؟ 
+                                        <a href="login.html" class="text-primary text-decoration-none fw-bold">تسجيل الدخول</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Welcome Bonus -->
+                    <div class="card shadow-sm border-0 mt-4 bg-primary text-white">
+                        <div class="card-body p-4 text-center">
+                            <i class="fas fa-gift fa-3x mb-3"></i>
+                            <h5 class="fw-bold mb-2">مكافأة الترحيب!</h5>
+                            <p class="mb-3">احصل على خصم 20% على أول طلب لك</p>
+                            <small>استخدم كود: WELCOME20</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted small mb-0">جميع الحقوق محفوظة © 2025 SMM Panel</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleIcon = fieldId === 'password' ? document.getElementById('toggleIcon1') : document.getElementById('toggleIcon2');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+        
+        // Password confirmation validation
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            if (password !== confirmPassword) {
+                this.setCustomValidity('كلمات المرور غير متطابقة');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+        
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (this.checkValidity()) {
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    country: document.getElementById('country').value,
+                    newsletter: document.getElementById('newsletter').checked,
+                    registrationDate: new Date().toISOString()
+                };
+                
+                // Simulate registration
+                localStorage.setItem('user', JSON.stringify({
+                    name: formData.firstName + ' ' + formData.lastName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    role: 'user',
+                    registrationDate: formData.registrationDate
+                }));
+                
+                alert('تم إنشاء الحساب بنجاح! مرحباً بك في SMM Panel');
+                window.location.href = 'dashboard.html';
+            }
+            
+            this.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>

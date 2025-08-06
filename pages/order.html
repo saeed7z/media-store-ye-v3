@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقديم طلب - SMM Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/rtl.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-chart-line me-2"></i>
+                SMM Panel
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">الخدمات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="order.html">تقديم طلب</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="track.html">تتبع الطلب</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">تواصل معنا</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">تسجيل الدخول</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white px-3" href="register.html">إنشاء حساب</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header bg-gradient-primary text-white py-4">
+        <div class="container">
+            <h1 class="h2 fw-bold mb-2">تقديم طلب جديد</h1>
+            <p class="mb-0">املأ النموذج أدناه لتقديم طلبك</p>
+        </div>
+    </section>
+
+    <!-- Order Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-shopping-cart me-2"></i>
+                                نموذج الطلب
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="orderForm" class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="platform" class="form-label">اختر المنصة *</label>
+                                        <select class="form-select" id="platform" required>
+                                            <option value="">اختر المنصة</option>
+                                            <option value="instagram">انستقرام</option>
+                                            <option value="tiktok">تيك توك</option>
+                                            <option value="youtube">يوتيوب</option>
+                                            <option value="twitter">تويتر</option>
+                                            <option value="facebook">فيسبوك</option>
+                                            <option value="snapchat">سناب شات</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            يرجى اختيار المنصة
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="serviceType" class="form-label">نوع الخدمة *</label>
+                                        <select class="form-select" id="serviceType" required>
+                                            <option value="">اختر نوع الخدمة</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            يرجى اختيار نوع الخدمة
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="profileLink" class="form-label">رابط الحساب أو المنشور *</label>
+                                    <input type="url" class="form-control" id="profileLink" placeholder="https://..." required>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        أدخل رابط حسابك أو المنشور المراد تطبيق الخدمة عليه
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        يرجى إدخال رابط صحيح
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="quantity" class="form-label">الكمية *</label>
+                                        <input type="number" class="form-control" id="quantity" min="100" step="100" placeholder="1000" required>
+                                        <div class="form-text">الحد الأدنى: 100</div>
+                                        <div class="invalid-feedback">
+                                            يرجى إدخال كمية صحيحة (100 كحد أدنى)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="totalPrice" class="form-label">السعر الإجمالي</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="totalPrice" readonly placeholder="0.00">
+                                            <span class="input-group-text">ر.س</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="userEmail" class="form-label">البريد الإلكتروني *</label>
+                                    <input type="email" class="form-control" id="userEmail" placeholder="your@email.com" required>
+                                    <div class="form-text">
+                                        <i class="fas fa-envelope me-1"></i>
+                                        سنرسل لك تفاصيل الطلب وحالة التنفيذ
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        يرجى إدخال بريد إلكتروني صحيح
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="notes" class="form-label">ملاحظات إضافية</label>
+                                    <textarea class="form-control" id="notes" rows="3" placeholder="أي ملاحظات أو تعليمات خاصة..."></textarea>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                        <label class="form-check-label" for="agreeTerms">
+                                            أوافق على <a href="#" class="text-primary">شروط الاستخدام</a> و <a href="#" class="text-primary">سياسة الخصوصية</a>
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            يجب الموافقة على الشروط والأحكام
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        إرسال الطلب
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">SMM Panel</h5>
+                    <p class="text-muted small">أفضل منصة للتسويق الإلكتروني وخدمات وسائل التواصل الاجتماعي في المنطقة العربية</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-telegram fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">روابط سريعة</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-muted text-decoration-none">من نحن</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">الخدمات</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">تواصل معنا</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">سياسة الاستخدام</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">الخدمات</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html#instagram" class="text-muted text-decoration-none">انستقرام</a></li>
+                        <li><a href="services.html#tiktok" class="text-muted text-decoration-none">تيك توك</a></li>
+                        <li><a href="services.html#youtube" class="text-muted text-decoration-none">يوتيوب</a></li>
+                        <li><a href="services.html#twitter" class="text-muted text-decoration-none">تويتر</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">تواصل معنا</h6>
+                    <p class="text-muted small mb-2"><i class="fas fa-envelope me-2"></i>support@smmPanel.com</p>
+                    <p class="text-muted small mb-2"><i class="fab fa-whatsapp me-2"></i>+966 50 123 4567</p>
+                    <p class="text-muted small"><i class="fab fa-telegram me-2"></i>@smmPanel_support</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted small mb-0">جميع الحقوق محفوظة © 2025 SMM Panel</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+</body>
+</html>

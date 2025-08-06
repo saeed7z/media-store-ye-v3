@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - SMM Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/rtl.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-chart-line me-2"></i>
+                SMM Panel
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="../index.html">العودة للرئيسية</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-user-circle fa-4x text-primary mb-3"></i>
+                                <h2 class="fw-bold mb-2">تسجيل الدخول</h2>
+                                <p class="text-muted">ادخل إلى حسابك للوصول إلى جميع الخدمات</p>
+                            </div>
+                            
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">كلمة المرور</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+                                            <i class="fas fa-eye" id="toggleIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            تذكرني
+                                        </label>
+                                    </div>
+                                    <a href="#" class="text-decoration-none text-primary">نسيت كلمة المرور؟</a>
+                                </div>
+                                
+                                <div class="d-grid mb-3">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-sign-in-alt me-2"></i>
+                                        تسجيل الدخول
+                                    </button>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <p class="mb-0">ليس لديك حساب؟ 
+                                        <a href="register.html" class="text-primary text-decoration-none fw-bold">إنشاء حساب جديد</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Login Options -->
+                    <div class="card shadow-sm border-0 mt-4">
+                        <div class="card-body p-4">
+                            <h6 class="fw-bold text-center mb-3">تسجيل دخول سريع</h6>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-danger" onclick="quickLogin('admin')">
+                                    <i class="fas fa-user-shield me-2"></i>دخول كمدير
+                                </button>
+                                <button class="btn btn-outline-success" onclick="quickLogin('user')">
+                                    <i class="fas fa-user me-2"></i>دخول كعميل
+                                </button>
+                            </div>
+                            <small class="text-muted d-block text-center mt-2">للتجربة فقط - سيتم توجيهك للوحة التحكم</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits -->
+                    <div class="mt-4">
+                        <h6 class="fw-bold mb-3 text-center">مميزات إنشاء حساب</h6>
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <i class="fas fa-history fa-2x text-primary mb-2"></i>
+                                <small class="d-block">تتبع الطلبات</small>
+                            </div>
+                            <div class="col-4">
+                                <i class="fas fa-star fa-2x text-primary mb-2"></i>
+                                <small class="d-block">خصومات حصرية</small>
+                            </div>
+                            <div class="col-4">
+                                <i class="fas fa-headset fa-2x text-primary mb-2"></i>
+                                <small class="d-block">دعم مخصص</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted small mb-0">جميع الحقوق محفوظة © 2025 SMM Panel</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+        
+        function quickLogin(userType) {
+            // Simulate login success
+            if (userType === 'admin') {
+                localStorage.setItem('user', JSON.stringify({
+                    name: 'مدير النظام',
+                    email: 'admin@smmPanel.com',
+                    role: 'admin',
+                    loginTime: new Date().toISOString()
+                }));
+            } else {
+                localStorage.setItem('user', JSON.stringify({
+                    name: 'عميل تجريبي',
+                    email: 'user@example.com',
+                    role: 'user',
+                    loginTime: new Date().toISOString()
+                }));
+            }
+            
+            alert('تم تسجيل الدخول بنجاح! سيتم توجيهك للوحة التحكم');
+            window.location.href = 'dashboard.html';
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) {
+                // Simulate login
+                localStorage.setItem('user', JSON.stringify({
+                    name: 'مستخدم جديد',
+                    email: email,
+                    role: 'user',
+                    loginTime: new Date().toISOString()
+                }));
+                
+                alert('تم تسجيل الدخول بنجاح!');
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>
