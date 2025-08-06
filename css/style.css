@@ -511,54 +511,35 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 28px;
+    width: 60px;
+    height: 38px;
     background: #fff;
     border: 1px solid #e2e8f0;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.3s ease;
     opacity: 0.9;
+    overflow: hidden;
 }
 
 .payment-icon:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     opacity: 1;
+    border-color: #87ceeb;
 }
 
-.payment-icon img,
-.payment-icon svg {
-    width: auto;
-    height: 20px;
-    max-width: 38px;
-}
-
-.payment-icon.mastercard {
-    background: linear-gradient(90deg, #eb001b 50%, #f79e1b 50%);
-}
-
-.payment-icon.visa {
-    background: #1a1f71;
-}
-
-.payment-icon.paypal {
-    background: #0070ba;
-}
-
-.payment-icon.bank {
-    background: #f8f9fa;
-    border-color: #dee2e6;
-}
-
-.payment-icon.bank:hover {
-    background: #e9ecef;
+.payment-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
 }
 
 .payment-icons-title {
-    color: #6b7280;
+    color: #87ceeb;
     font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
     text-align: center;
 }
 
