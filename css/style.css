@@ -497,6 +497,71 @@ body {
     animation: fadeIn 0.5s ease-out;
 }
 
+/* Payment Icons */
+.payment-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.payment-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 28px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.payment-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 1;
+}
+
+.payment-icon img,
+.payment-icon svg {
+    width: auto;
+    height: 20px;
+    max-width: 38px;
+}
+
+.payment-icon.mastercard {
+    background: linear-gradient(90deg, #eb001b 50%, #f79e1b 50%);
+}
+
+.payment-icon.visa {
+    background: #1a1f71;
+}
+
+.payment-icon.paypal {
+    background: #0070ba;
+}
+
+.payment-icon.bank {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+.payment-icon.bank:hover {
+    background: #e9ecef;
+}
+
+.payment-icons-title {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
 /* Utility Classes */
 .text-gradient {
     background: var(--gradient-primary);
