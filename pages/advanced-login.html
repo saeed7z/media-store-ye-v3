@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - SMM Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/rtl.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+                <i class="fas fa-chart-line me-2"></i>
+                SMM Panel
+            </a>
+            
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="../index.html">الرئيسية</a>
+                <a class="nav-link" href="services.html">الخدمات</a>
+                <a class="nav-link" href="contact.html">تواصل معنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="py-5 bg-light min-vh-100 d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-8">
+                    <div class="card shadow-lg border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <div class="bg-primary bg-gradient rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-user-circle fa-2x text-white"></i>
+                                </div>
+                                <h2 class="fw-bold mb-2">مرحباً بك مرة أخرى</h2>
+                                <p class="text-muted">اختر طريقة تسجيل الدخول المفضلة لديك</p>
+                            </div>
+                            
+                            <form id="loginForm" class="needs-validation auth-form" novalidate>
+                                <!-- Social login buttons will be inserted here by JavaScript -->
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-bold">البريد الإلكتروني</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fas fa-envelope text-primary"></i>
+                                        </span>
+                                        <input type="email" class="form-control border-start-0 ps-0" id="email" 
+                                               placeholder="your@email.com" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        يرجى إدخال بريد إلكتروني صحيح
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="password" class="form-label fw-bold">كلمة المرور</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <i class="fas fa-lock text-primary"></i>
+                                        </span>
+                                        <input type="password" class="form-control border-0 ps-0" id="password" 
+                                               placeholder="••••••••" required>
+                                        <button class="btn btn-outline-secondary border-start-0" type="button" onclick="togglePassword()">
+                                            <i class="fas fa-eye" id="toggleIcon"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        يرجى إدخال كلمة المرور
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label fw-bold" for="rememberMe">
+                                            تذكرني
+                                        </label>
+                                    </div>
+                                    <a href="#" class="text-decoration-none text-primary fw-bold">نسيت كلمة المرور؟</a>
+                                </div>
+                                
+                                <div class="d-grid mb-4">
+                                    <button type="submit" class="btn btn-primary btn-lg fw-bold py-3">
+                                        <i class="fas fa-sign-in-alt me-2"></i>
+                                        تسجيل الدخول
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <div class="text-center">
+                                <p class="mb-0 text-muted">ليس لديك حساب؟ 
+                                    <a href="advanced-register.html" class="text-primary text-decoration-none fw-bold">إنشاء حساب جديد</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits -->
+                    <div class="mt-4">
+                        <div class="row text-center g-3">
+                            <div class="col-4">
+                                <div class="bg-white rounded-3 p-3 shadow-sm">
+                                    <i class="fas fa-shield-alt fa-2x text-success mb-2"></i>
+                                    <small class="d-block fw-bold">أمان عالي</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="bg-white rounded-3 p-3 shadow-sm">
+                                    <i class="fas fa-star fa-2x text-warning mb-2"></i>
+                                    <small class="d-block fw-bold">خدمة مميزة</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="bg-white rounded-3 p-3 shadow-sm">
+                                    <i class="fas fa-headset fa-2x text-primary mb-2"></i>
+                                    <small class="d-block fw-bold">دعم 24/7</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted small mb-0">
+                        &copy; 2025 SMM Panel - جميع الحقوق محفوظة | 
+                        تصميم وتطوير: <span class="text-primary">فريق التسويق الاجتماعي</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/countries.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/reviews.js"></script>
+    
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+        
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (this.checkValidity()) {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Simulate login process
+                const user = {
+                    id: 'local_' + Date.now(),
+                    name: email.split('@')[0],
+                    email: email,
+                    authProvider: 'local',
+                    isVerified: true
+                };
+                
+                handleSuccessfulAuth(user);
+            }
+            
+            this.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>

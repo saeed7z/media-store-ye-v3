@@ -40,12 +40,26 @@
                         <a class="nav-link" href="pages/contact.html">تواصل معنا</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav auth-nav-items">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/login.html">تسجيل الدخول</a>
+                        <a class="nav-link" href="pages/advanced-login.html">تسجيل الدخول</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white px-3" href="pages/register.html">إنشاء حساب</a>
+                        <a class="nav-link btn btn-primary text-white px-3" href="pages/advanced-register.html">إنشاء حساب</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav user-nav-items" style="display: none;">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="https://via.placeholder.com/32x32" alt="User" class="rounded-circle me-2 user-image-display" style="width: 32px; height: 32px;">
+                            <span class="user-name-display">المستخدم</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="pages/dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>لوحة التحكم</a></li>
+                            <li><a class="dropdown-item" href="pages/track.html"><i class="fas fa-search me-2"></i>تتبع الطلبات</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -205,6 +219,27 @@
         </div>
     </section>
 
+    <!-- Customer Reviews -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="fw-bold mb-3">آراء عملائنا</h2>
+                    <p class="text-muted">تقييمات حقيقية من عملائنا الكرام</p>
+                </div>
+            </div>
+            
+            <div class="row" id="recentReviews">
+                <!-- Reviews will be loaded by JavaScript -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">جاري التحميل...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Statistics -->
     <section class="py-5">
         <div class="container">
@@ -279,7 +314,12 @@
             <hr class="my-4">
             <div class="row">
                 <div class="col text-center">
-                    <p class="text-muted small mb-0">&copy; 2025 جميع الحقوق محفوظة. تم التصميم بواسطة لوحة التسويق الاجتماعي</p>
+                    <p class="text-muted small mb-0">
+                        &copy; 2025 SMM Panel - جميع الحقوق محفوظة | 
+                        تصميم وتطوير: <span class="text-primary">فريق التسويق الاجتماعي</span> | 
+                        <a href="pages/terms.html" class="text-muted text-decoration-none">شروط الاستخدام</a> | 
+                        <a href="pages/privacy.html" class="text-muted text-decoration-none">سياسة الخصوصية</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -290,5 +330,8 @@
     <script src="js/cart.js"></script>
     <script src="js/currency.js"></script>
     <script src="js/payment.js"></script>
+    <script src="js/countries.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/reviews.js"></script>
 </body>
 </html>
